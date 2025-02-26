@@ -3,86 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Typing Game !</title>
+    <title>Plane Game</title>
     <style>
         body {
             text-align: center;
-            background-color: black;
-            color: white;
             font-family: Arial, sans-serif;
+            color: white;
+            background: linear-gradient(to bottom, #87CEEB, #1E90FF); /* Sodda osmon efekti */
+            overflow: hidden;
         }
         #gameArea {
-            width: 100%;
+            width: 320px;
             height: 500px;
-            position: relative;
-            overflow: hidden;
             border: 2px solid white;
             margin: auto;
-            background-color: darkblue;
+            position: relative;
+            background: rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px white;
         }
-        .word {
+        #plane {
+            width: 60px;
+            height: auto;
             position: absolute;
-            font-size: 20px;
-            color: yellow;
+            bottom: 10px;
+            left: 130px;
+            transition: left 0.1s ease-out; /* Silliq harakat */
         }
-        #inputBox {
-            width: 300px;
+        .enemy {
+            width: 50px;
+            height: auto;
+            position: absolute;
+            top: 0;
+            animation: enemyFall 3s linear infinite;
+        }
+        .bullet {
+            width: 8px;
+            height: 20px;
+            background-color: red;
+            position: absolute;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .control-btn {
+            width: 90px;
+            height: 45px;
             font-size: 18px;
-            padding: 5px;
-            margin-top: 10px;
+            margin: 5px;
+            background: linear-gradient(to bottom, #ff9800, #ff5722);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+        }
+        .control-btn:active {
+            transform: scale(0.95);
         }
         #score {
             font-size: 22px;
             margin-top: 10px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <h2>Tez yozish o‘yini</h2>
+
+    <h2>Samolyot O‘yini</h2>
     <div id="score">Ball: 0</div>
-    <div id="gameArea"></div>
-    <input type="text" id="inputBox" placeholder="So‘zni yozing...">
-    
+    <div id="gameArea">
+        <img id="plane" src="https://www.freeiconspng.com/uploads/fighter-jet-png-image-19.png" alt="Samolyot">
+    </div>
+
+    <div class="button-container">
+        <button class="control-btn" onclick="moveLeft()">⬅️ Chap</button>
+        <button class="control-btn" onclick="moveRight()">O‘ng ➡️</button>
+        <button class="control-btn" onclick="fire()">🔥 Fire</button>
+    </div>
+
     <script>
-        let words = ["dastur", "kitob", "kompyuter", "o'yin", "til", "tezlik", "samolyot", "fayl", "yangi", "internet"];
+        let plane = document.getElementById("plane");
         let gameArea = document.getElementById("gameArea");
-        let inputBox = document.getElementById("inputBox");
         let scoreDisplay = document.getElementById("score");
         let score = 0;
-        let speed = 2000;
+        let x = 130;
+        let bullets = [];
+        let enemies = [];
 
-        function createWord() {
-            let word = document.createElement("div");
-            word.className = "word";
-            word.innerText = words[Math.floor(Math.random() * words.length)];
-            word.style.left = Math.random() * (window.innerWidth - 100) + "px";
-            word.style.top = "0px";
-            gameArea.appendChild(word);
+        function moveLeft() {
+            if (x > 0) {
+                x -= 15;
+                plane.style.left = x + "px";
+            }
+        }
 
-            let interval = setInterval(() => {
-                let top = parseInt(word.style.top);
-                if (top >= 450) {
-                    clearInterval(interval);
-                    word.remove();
+        function moveRight() {
+            if (x < 260) {
+                x += 15;
+                plane.style.left = x + "px";
+            }
+        }
+
+        function fire() {
+            let bullet = document.createElement("div");
+            bullet.className = "bullet";
+            bullet.style.left = (x + 26) + "px";
+            bullet.style.bottom = "60px";
+            gameArea.appendChild(bullet);
+            bullets.push(bullet);
+            moveBullet(bullet);
+        }
+
+        function moveBullet(bullet) {
+            let bulletInterval = setInterval(() => {
+                let bottom = parseInt(bullet.style.bottom);
+                if (bottom >= 500) {
+                    clearInterval(bulletInterval);
+                    bullet.remove();
                 } else {
-                    word.style.top = top + 5 + "px";
+                    bullet.style.bottom = bottom + 10 + "px";
+                }
+            }, 50);
+        }
+
+        function createEnemy() {
+            let enemy = document.createElement("img");
+            enemy.className = "enemy";
+            enemy.src = "https://www.freeiconspng.com/uploads/airplane-png-10.png"; // Dushman samolyoti
+            enemy.style.left = Math.random() * 250 + "px";
+            enemy.style.top = "0px";
+            gameArea.appendChild(enemy);
+            enemies.push(enemy);
+            moveEnemy(enemy);
+        }
+
+        function moveEnemy(enemy) {
+            let enemyInterval = setInterval(() => {
+                let top = parseInt(enemy.style.top);
+                if (top >= 500) {
+                    clearInterval(enemyInterval);
+                    enemy.remove();
+                } else {
+                    enemy.style.top = top + 5 + "px";
                 }
             }, 100);
         }
 
-        setInterval(createWord, speed);
+        function checkCollision() {
+            bullets.forEach((bullet, bIndex) => {
+                let bLeft = parseInt(bullet.style.left);
+                let bBottom = parseInt(bullet.style.bottom);
 
-        inputBox.addEventListener("input", function () {
-            let typedWord = inputBox.value.toLowerCase();
-            document.querySelectorAll(".word").forEach(word => {
-                if (word.innerText === typedWord) {
-                    word.remove();
-                    inputBox.value = "";
-                    score += 10;
-                    scoreDisplay.innerText = "Ball: " + score;
-                }
+                enemies.forEach((enemy, eIndex) => {
+                    let eLeft = parseInt(enemy.style.left);
+                    let eTop = parseInt(enemy.style.top);
+
+                    if (bLeft > eLeft && bLeft < eLeft + 50 && bBottom > eTop && bBottom < eTop + 50) {
+                        bullet.remove();
+                        enemy.remove();
+                        bullets.splice(bIndex, 1);
+                        enemies.splice(eIndex, 1);
+                        score += 15;
+                        scoreDisplay.innerText = "Ball: " + score;
+                    }
+                });
             });
-        });
+        }
+
+        function addScore() {
+            score += 5;
+            scoreDisplay.innerText = "Ball: " + score;
+        }
+
+        function gameLoop() {
+            checkCollision();
+            setTimeout(gameLoop, 50); 
+        }
+
+        setInterval(createEnemy, 2000);
+        setInterval(addScore, 3000);
+        gameLoop();
     </script>
+
 </body>
 </html>
