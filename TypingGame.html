@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Game !</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        #gameArea {
+            width: 100%;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid white;
+            margin: auto;
+            background-color: darkblue;
+        }
+        .word {
+            position: absolute;
+            font-size: 20px;
+            color: yellow;
+        }
+        #inputBox {
+            width: 300px;
+            font-size: 18px;
+            padding: 5px;
+            margin-top: 10px;
+        }
+        #score {
+            font-size: 22px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Tez yozish o‘yini</h2>
+    <div id="score">Ball: 0</div>
+    <div id="gameArea"></div>
+    <input type="text" id="inputBox" placeholder="So‘zni yozing...">
+    
+    <script>
+        let words = ["dastur", "kitob", "kompyuter", "o'yin", "til", "tezlik", "samolyot", "fayl", "yangi", "internet"];
+        let gameArea = document.getElementById("gameArea");
+        let inputBox = document.getElementById("inputBox");
+        let scoreDisplay = document.getElementById("score");
+        let score = 0;
+        let speed = 2000;
+
+        function createWord() {
+            let word = document.createElement("div");
+            word.className = "word";
+            word.innerText = words[Math.floor(Math.random() * words.length)];
+            word.style.left = Math.random() * (window.innerWidth - 100) + "px";
+            word.style.top = "0px";
+            gameArea.appendChild(word);
+
+            let interval = setInterval(() => {
+                let top = parseInt(word.style.top);
+                if (top >= 450) {
+                    clearInterval(interval);
+                    word.remove();
+                } else {
+                    word.style.top = top + 5 + "px";
+                }
+            }, 100);
+        }
+
+        setInterval(createWord, speed);
+
+        inputBox.addEventListener("input", function () {
+            let typedWord = inputBox.value.toLowerCase();
+            document.querySelectorAll(".word").forEach(word => {
+                if (word.innerText === typedWord) {
+                    word.remove();
+                    inputBox.value = "";
+                    score += 10;
+                    scoreDisplay.innerText = "Ball: " + score;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
