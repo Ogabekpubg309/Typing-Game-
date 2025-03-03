@@ -1,3 +1,54 @@
+/* Umumiy sahifa sozlamalari */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: url('https://source.unsplash.com/1600x900/?galaxy,stars') no-repeat center center/cover;
+    color: #fff;
+}
+
+/* O'yin konteyneri */
+.container {
+    margin: 50px auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Matn va input maydoni */
+h1, h2 {
+    color: #ffcc00;
+}
+#word {
+    font-size: 36px;
+    font-weight: bold;
+}
+#input {
+    font-size: 24px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 80%;
+    margin: 10px 0;
+}
+
+/* Tugma dizayni */
+button {
+    padding: 10px 20px;
+    font-size: 20px;
+    color: #fff;
+    background-color: rgba(0, 123, 255, 0.8);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+button:hover {
+    background-color: rgba(0, 86, 179, 0.8);
+}
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -52,4 +103,13 @@ button {
 
 button:hover {
     background-color: rgba(0, 86, 179, 0.8);
+}
+
+/* Animatsiyalar */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.container {
+    animation: fadeIn 1s ease-in-out;
 }
