@@ -1,79 +1,91 @@
-const words = [
-    "daraxt", "quyosh", "kitob", "maktab", "talaba", "osmon", "yashil", "oila", "dost", "yoz",
-    "oyna", "tog", "hayot", "oyin", "baho", "oyoq", "bahor", "kulgi", "yulduz", "chang",
-    "qalam", "dehqon", "shahar", "uy", "tungi", "yangi", "musicha", "bog", "baliq", "suv",
-    "shamol", "tuproq", "kocha", "barg", "gullar", "xabar", "telefon", "soat", "olma", "shakar",
-    "osh", "doira", "toza", "havo", "hamkor", "tezlik", "uchrashuv", "gap", "meva", "oy",
-    "chaqmoq", "oshiq", "qalb", "buloq", "sayohat", "qalpoq", "qush", "navo", "obod", "bekat",
-    "togay", "qum", "muhabbat", "sadoqat", "yulduzcha", "bobo", "buvi", "ism", "sher", "jon",
-    "yil", "qushcha", "tashabbus", "ustoz", "fido", "yosh", "sayyor", "shodlik", "baxmal",
-    "qahramon", "xushchaqchaq", "sehr", "sokin", "yoqimli", "marvarid", "dengiz", "gumbaz",
-    "shifokor", "tabiat", "choqqi", "kozgular", "tarbiya", "baxt", "yorqin", "juda", "shirin",
-    "zamon", "andishali", "fikr", "shart", "baraka", "saboq", "mahalla", "kuch", "yaxshilik",
-    "katta", "kichik", "qiziq", "yozuvchi", "sanat", "bilim", "ishonch", "tayin", "foydali",
-    "mohir", "ustozlar", "sadoqatli", "tozalash", "mard", "shirinlik", "qovun", "tarvuz",
-    "uzum", "nok", "shaftoli", "gilos", "anjir", "yashnash", "barqaror", "mojiza", "yorug",
-    "yomonlik", "hunar", "qarindosh", "mustahkam", "asar", "vosita", "olijanob", "xalq",
-    "davlat", "sinf", "kitobxona", "xalqaro", "ziyo", "quvnoq", "bahoriy", "oquvchi",
-    "ahloq", "fidoiy", "tashkilot", "xalqparvar", "sohaning", "yuksak", "madaniyat",
-    "ajoyib", "mukofot", "sabr", "iroda", "jozibador", "ehtiyotkor", "maqsad", "kashfiyot",
-    "tejamkor", "jasur", "mashhur", "samarali", "ishchan", "chidamli", "jihat", "ulkan",
-    "muvaffaqiyat", "natija", "jarayon", "muomala", "iqtidor", "shon", "shavkat",
-    "qadimiy", "taraqqiyot", "ijodkor", "ilm", "ijod", "boylik", "kelajak", "mardlik",
-    "mahsulot", "samimiy", "saxovat", "mehmon", "otash", "sevimli", "ziyo", "yodgorlik",
-    "ilhom", "soddalik", "jasorat", "bek", "shifo", "zamon", "fayz", "bunyodkor", "tinchlik",
-    "hudud", "doimiy", "choqqi", "anatomiya", "muvozanat", "serquyosh", "bogcha", "chaman",
-    "qadriyat", "istehkom", "marhum", "ehson", "umr", "mohir", "zavq", "masofa", "yashamoq"
-];
-
+let words = {
+    easy: [
+        "olma", "kitob", "maktab", "daraxt", "shahar", "quyon", "suv", "oy", "yoz", "yil",
+        "ona", "ota", "bola", "daryo", "qush", "devor", "yulduz", "havo", "qalam", "qogoz",
+        "gullar", "tuproq", "do‘st", "oyna", "ish", "soat", "qo‘ng‘iroq", "qo‘shimcha", "tashqarida", "ichkarida",
+        "mashina", "kitoblar", "maktablar", "shaharlar", "bahor", "kuz", "qish", "yozgi", "suvlar", "oylar",
+        "yulduzlar", "havorang", "qizil", "yashil", "ko‘k", "oq", "qora", "bezak", "maydon", "shodlik"
+    ],
+    medium: [
+        "kompyuter", "telefon", "internet", "samolyot", "fayl", "dastur", "hisob", "uyg‘onish", "vazifa",
+        "joriy", "matn", "ko‘rsatma", "televizor", "kino", "musiqa", "sayohat", "maqola", "gazeta", "tasvir",
+        "shamol", "yomg‘ir", "sanoq", "o‘qituvchi", "savol", "javob", "sinf", "ekran", "shisha", "tugma", "monitor",
+        "klaviatura", "sichqoncha", "sinov", "o‘yin", "baholar", "kitobxona", "toza", "ishlatish", "amaliyot",
+        "qulay", "tajriba", "foydali", "oddiy", "shifokor", "dorilar", "o‘rmon", "gullar", "cho‘l", "qum"
+    ],
+    hard: [
+        "dasturchilik", "muammolar", "innovatsiya", "elektronika", "matematika", "fizika", "kimyo", "tahlil",
+        "statistika", "muvozanat", "fizikaviy", "mualliflik", "psixologiya", "algoritm", "falsafa", "geometriya",
+        "protsessor", "generator", "eksperiment", "tezkorlik", "xatolik", "samaradorlik", "tizim", "informatsiya",
+        "operatsiya", "jadval", "rivojlanish", "insoniyat", "model", "parametr", "maqsad", "muvofiqlik",
+        "translyatsiya", "murakkablik", "moslashish", "ixtiro", "shaxsiyat", "mustaqillik", "innovatsiyalar",
+        "motivatsiya", "ijodkorlik", "potensial", "avtomatlashtirish", "hisob-kitob", "tahliliy", "kategoriya",
+        "statistik", "murakkab", "masofaviy", "gipoteza", "resurs"
+    ]
+};
 
 let score = 0;
-let time = 60;
-let gameOver = false;
+let highScore = localStorage.getItem("highScore") || 0;
+let time = 30;
+let combo = 0;
+let currentWord = "";
 
-const wordElement = document.getElementById("word");
-const inputElement = document.getElementById("input");
-const scoreElement = document.getElementById("score");
-const timeElement = document.getElementById("time");
-const restartButton = document.getElementById("restart");
+const wordDisplay = document.getElementById("word");
+const input = document.getElementById("input");
+const scoreDisplay = document.getElementById("score");
+const highScoreDisplay = document.getElementById("highScore");
+const timeDisplay = document.getElementById("time");
+const difficultySelect = document.getElementById("difficulty");
 
-function newWord() {
-    if (!gameOver) {
-        wordElement.textContent = words[Math.floor(Math.random() * words.length)];
+highScoreDisplay.textContent = highScore;
+
+function getNewWord() {
+    let difficulty = difficultySelect.value;
+    let wordList = words[difficulty];
+    currentWord = wordList[Math.floor(Math.random() * wordList.length)];
+    wordDisplay.textContent = currentWord;
+}
+
+function updateScore() {
+    if (score > highScore) {
+        highScore = score;
+        localStorage.setItem("highScore", highScore);
+        highScoreDisplay.textContent = highScore;
     }
 }
 
-inputElement.addEventListener("input", function () {
-    if (!gameOver && inputElement.value.toLowerCase() === wordElement.textContent.toLowerCase()) {
+input.addEventListener("input", () => {
+    if (input.value.toLowerCase() === currentWord) {
         score++;
-        scoreElement.textContent = "Ball: " + score;
-        inputElement.value = "";
-        newWord();
+        combo++;
+        scoreDisplay.textContent = score;
+        updateScore();
+
+        if (combo % 5 === 0) {
+            time += 5;
+            timeDisplay.textContent = time;
+        }
+
+        input.value = "";
+        getNewWord();
     }
 });
 
-function updateTime() {
+setInterval(() => {
     if (time > 0) {
         time--;
-        timeElement.textContent = "Vaqt: " + time;
+        timeDisplay.textContent = time;
     } else {
-        gameOver = true;
-        wordElement.textContent = "O‘yin tugadi!";
-        inputElement.disabled = true;
-        restartButton.style.display = "block";
+        alert("O‘yin tugadi! Sizning ballingiz: " + score);
+        score = 0;
+        time = 30;
+        combo = 0;
+        scoreDisplay.textContent = score;
+        timeDisplay.textContent = time;
+        getNewWord();
     }
-}
+}, 1000);
 
-setInterval(updateTime, 1000);
-newWord();
+difficultySelect.addEventListener("change", getNewWord);
 
-restartButton.addEventListener("click", function () {
-    score = 0;
-    time = 60;
-    gameOver = false;
-    scoreElement.textContent = "Ball: " + score;
-    inputElement.value = "";
-    inputElement.disabled = false;
-    restartButton.style.display = "none";
-    newWord();
-});
+getNewWord();
