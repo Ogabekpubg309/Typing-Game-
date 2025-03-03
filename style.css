@@ -1,12 +1,18 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #121212;
+    background: url('https://source.unsplash.com/1600x900/?galaxy,stars') no-repeat center center/cover;
     color: #fff;
 }
 
 .container {
-    margin-top: 50px;
+    margin: 50px auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+    background: rgba(0, 0, 0, 0.7); /* Shaffof qora fon */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 h1 {
@@ -37,13 +43,13 @@ button {
     padding: 10px 20px;
     font-size: 20px;
     color: #fff;
-    background-color: #007bff;
+    background-color: rgba(0, 123, 255, 0.8); /* Shaffof tugma */
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    display: none; /* O‘yin tugaguncha tugma ko‘rinmaydi */
+    display: none;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: rgba(0, 86, 179, 0.8);
 }
