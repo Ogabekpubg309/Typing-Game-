@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Typing Game</title>
+    <title>So‘z O‘yini</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>So‘zni yozing</h1>
-        <p>Qolgan vaqt: <span id="time">30</span> soniya</p>
-        <p>Hisob: <span id="score">0</span></p>
-        <h2 id="word">...</h2>
-        <input type="text" id="input" placeholder="So‘zni kiriting..." autofocus>
-        <button id="restart">Qayta boshlash</button>
-    </div>
+    <h1>So‘z O‘yini</h1>
+
+    <label for="difficulty">Qiyinchilik:</label>
+    <select id="difficulty">
+        <option value="easy">Oson</option>
+        <option value="medium" selected>O‘rtacha</option>
+        <option value="hard">Qiyin</option>
+    </select>
+
+    <p>So‘z: <span id="word">...</span></p>
+    <input type="text" id="input" placeholder="So‘zni kiriting">
+
+    <p>Ball: <span id="score">0</span></p>
+    <p>Eng yuqori ball: <span id="highScore">0</span></p>
+    <p>Vaqt: <span id="time">30</span> soniya</p>
+
     <script src="script.js"></script>
 </body>
 </html>
