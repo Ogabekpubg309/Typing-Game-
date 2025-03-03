@@ -1,6 +1,10 @@
 const words = [
-    "daraxt", "quyosh", "kitob", "maktab", "talaba", "osmon", "yashil", "oila", "do'st", "yoz"
-    "oyna", "tog", "hayot", "o'yin", "baho", "oyoq", "bahor", "kulgi", "yulduz", "chang"
+    "daraxt", "quyosh", "kitob", "maktab", "talaba", "osmon", "yashil", "oila", "dost", "yoz",
+    "oyna", "tog", "hayot", "oyin", "baho", "oyoq", "bahor", "kulgi", "yulduz", "chang",
+    "qalam", "dehqon", "shahar", "uy", "tungi", "yangi", "musicha", "bog", "baliq", "suv",
+    "shamol", "tuproq", "kocha", "barg", "gullar", "xabar", "telefon", "soat", "olma", "shakar",
+    "osh", "doira", "toza", "havo", "hamkor", "tezlik", "uchrashuv", "gap", "meva", "oy",
+    "chaqmoq", "oshiq", "qalb", "buloq", "sayohat", "qalpoq", "qush", "navo", "obod", "bekat"
 ];
 
 let score = 0;
