@@ -9,6 +9,10 @@ body {
     margin-top: 50px;
 }
 
+h1 {
+    color: #ffcc00;
+}
+
 #word {
     font-size: 36px;
     font-weight: bold;
@@ -21,11 +25,12 @@ body {
     border-radius: 5px;
     border: none;
     outline: none;
+    width: 80%;
+    margin: 10px 0;
 }
 
-#score {
-    font-size: 24px;
-    margin-top: 10px;
+#score, #time {
+    font-size: 20px;
 }
 
 button {
@@ -36,6 +41,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    display: none; /* O‘yin tugaguncha tugma ko‘rinmaydi */
 }
 
 button:hover {
