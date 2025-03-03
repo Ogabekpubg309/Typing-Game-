@@ -27,16 +27,23 @@ const words = [
 ];
 
 let score = 0;
+let time = 60;
+let gameOver = false;
+
 const wordElement = document.getElementById("word");
 const inputElement = document.getElementById("input");
 const scoreElement = document.getElementById("score");
+const timeElement = document.getElementById("time");
+const restartButton = document.getElementById("restart");
 
 function newWord() {
-    wordElement.textContent = words[Math.floor(Math.random() * words.length)];
+    if (!gameOver) {
+        wordElement.textContent = words[Math.floor(Math.random() * words.length)];
+    }
 }
 
 inputElement.addEventListener("input", function () {
-    if (inputElement.value.toLowerCase() === wordElement.textContent.toLowerCase()) {
+    if (!gameOver && inputElement.value.toLowerCase() === wordElement.textContent.toLowerCase()) {
         score++;
         scoreElement.textContent = "Ball: " + score;
         inputElement.value = "";
@@ -44,4 +51,28 @@ inputElement.addEventListener("input", function () {
     }
 });
 
+function updateTime() {
+    if (time > 0) {
+        time--;
+        timeElement.textContent = "Vaqt: " + time;
+    } else {
+        gameOver = true;
+        wordElement.textContent = "O‘yin tugadi!";
+        inputElement.disabled = true;
+        restartButton.style.display = "block";
+    }
+}
+
+setInterval(updateTime, 1000);
 newWord();
+
+restartButton.addEventListener("click", function () {
+    score = 0;
+    time = 60;
+    gameOver = false;
+    scoreElement.textContent = "Ball: " + score;
+    inputElement.value = "";
+    inputElement.disabled = false;
+    restartButton.style.display = "none";
+    newWord();
+});
