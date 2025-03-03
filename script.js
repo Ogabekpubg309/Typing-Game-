@@ -26,6 +26,7 @@ const words = [
     "qadriyat", "istehkom", "marhum", "ehson", "umr", "mohir", "zavq", "masofa", "yashamoq"
 ];
 
+
 let score = 0;
 let time = 60;
 let gameOver = false;
