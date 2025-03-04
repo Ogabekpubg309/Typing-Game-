@@ -7,40 +7,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>So‘z O‘yini ⭐</h1>
 
-        <label for="difficulty">Qiyinchilik:</label>
-        <select id="difficulty">
-            <option value="easy">Oson</option>
-            <option value="medium" selected>O‘rtacha</option>
-            <option value="hard">Qiyin</option>
-        </select>
+    <!-- Qiyinchilik tanlash oynasi -->
+    <div id="difficulty-selection">
+        <h2>Qiyinchilik darajasini tanlang:</h2>
+        <button onclick="startGame('easy')">Oson</button>
+        <button onclick="startGame('medium')">O‘rtacha</button>
+        <button onclick="startGame('hard')">Qiyin</button>
+    </div>
 
-        <div class="game">
-            <p class="word-display" id="word">...</p>
-            <input type="text" id="input" placeholder="So‘zni kiriting">
-            <button id="restart">Qayta boshlash</button>
-        </div>
-
-        <div class="info">
-            <p>Ball: <span id="score">0</span></p>
-            <p>Eng yuqori ball: <span id="highScore">0</span></p>
-            <p>Vaqt: <span id="time">30</span> soniya</p>
-        </div>
-
-        <div class="leaderboard">
-            <h2>🏆 Reyting</h2>
-            <ul id="topScores">
-                <li>1. ---</li>
-                <li>2. ---</li>
-                <li>3. ---</li>
-                <li>4. ---</li>
-                <li>5. ---</li>
-            </ul>
+    <!-- O‘yin oynasi -->
+    <div id="game-container" style="display: none;">
+        <h2>So‘z O‘yini</h2>
+        <button id="start-button">Boshlash</button>
+        <div id="game-area" style="display: none;">
+            <p>O‘yin boshlandi!</p>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
+ 
