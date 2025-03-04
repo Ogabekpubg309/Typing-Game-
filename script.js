@@ -1,8 +1,43 @@
 let words = {
-    easy: ["olma", "kitob", "maktab", "quyon", "suv"],
-    medium: ["telefon", "internet", "samolyot", "hisob"],
-    hard: ["algoritm", "matematika", "statistika", "innovatsiya"]
+    easy: [
+        "olma", "kitob", "maktab", "quyon", "suv", "oy", "quyosh", "bog'", "shamol", "gul", "qalam", "yoz", "ish", "makon", "xon",
+        "meva", "do'st", "tosh", "qum", "daryo", "havo", "muhabbat", "yurak", "tong", "ko'cha", "yo'l", "orzu", "ko'z", "qush", 
+        "bahor", "tun", "tong", "yer", "osmon", "g'azal", "uy", "bobo", "noma", "ona", "ota", "bolalar", "qish", "yozuvchi", 
+        "baliq", "kitoblar", "dars", "daftar", "yangi", "hunar", "xalq", "millat", "madaniyat", "hayot", "fikr", "tasavvur",
+        "paxta", "cho'pon", "o'roq", "o'quvchi", "o'qituvchi", "tibbiyot", "shifokor", "rassom", "musiqa", "san'at", "shoir",
+        "sehr", "jumla", "bog'", "yo'l", "yo'lbars", "oyna", "kitobxona", "qalamdon", "kompyuter", "telefon", "ro'zg'or",
+        "xat", "yod", "savol", "javob", "lola", "laziz", "mayin", "oq", "qora", "yashil", "ko'k", "qizil", "pushti",
+        "tashabbus", "tugma", "ishga", "soat", "ancha", "shamol", "sher", "yo'lbars", "oy", "tush", "kuz", "hayot", "maqsad",
+        "sadoqat", "ona", "yurt", "osmon", "yulduz", "savdo", "urush", "tin", "suv", "sog'liq", "farzand", "ko'zgu",
+        "quyosh", "olam", "zamzam", "gul", "tabassum", "yo'l", "shamol", "o'rik", "yaproq", "osmon", "ko'rpa",
+        "yaxshi", "yomon", "foydali", "zararli", "shirin", "achchiq", "qalin", "ingichka", "katta", "kichik",
+        "tez", "sekin", "yuqori", "past", "keng", "tor", "baland", "pastroq", "yaqin", "uzoqqa",
+        "do'stlik", "beg'araz", "halol", "pok", "muloyim", "qattiq", "shirin", "achchiq", "xush", "yoqimli",
+        "ovoz", "yangi", "eski", "bo'sh", "to'la", "yaxshi", "yomon", "yorqin", "xira", "yashil",
+        "ko'k", "qizil", "pushti", "sariq", "oq", "qora", "kulrang", "yorug'", "quyuq", "shaffof",
+        "yorug'lik", "malla", "kamalak", "sharq", "g'arb", "shimol", "janub", "o't", "o'rmon", "shamol",
+        "qum", "g'or", "yashirin", "muhabbat", "sadqa", "saxovat", "mehmon", "mehmonxona", "ovqat",
+        "ichimlik", "taom", "non", "shirinlik", "tuz", "suv", "qahva", "choy", "ayron", "shirinlik"
+    ],
+    medium: [
+        "telefon", "internet", "samolyot", "hisob", "dastur", "matematika", "kompyuter", "soat", "qalamdon", "kursi",
+        "uyg‘onish", "imtihon", "tashkilot", "o‘yin", "shamol", "quvvat", "tartib", "parvarish", "qulaylik",
+        "oliy", "universitet", "samarali", "ilm", "ta’lim", "kafedra", "qobiliyat", "yutuq", "barcha", "tizim",
+        "loyiha", "investor", "innovatsiya", "foydalanish", "tahlil", "buxgalter", "boshqarish", "zamon", "o‘zgarish",
+        "mukammal", "reklama", "tijorat", "firma", "brend", "platforma", "kompaniya", "marketing", "muvaffaqiyat",
+        "audit", "kredit", "depozit", "resurs", "bank", "xalqaro", "aloka", "texnologiya", "kod", "dasturchi"
+    ],
+    hard: [
+        "algoritm", "matematika", "statistika", "innovatsiya", "fizika", "kimyo", "astronomiya", "sanoat", "muammo",
+        "strategiya", "marketing", "analitika", "investitsiya", "davlat", "rivojlanish", "tadqiqot", "fan",
+        "metodologiya", "falsafa", "estetika", "optimizatsiya", "paradigma", "ma'lumotnoma", "kripto", "tahlil",
+        "tizimlashtirish", "modellash", "arxitektura", "sinergiya", "intellekt", "ekologiya", "genealogiya",
+        "innovatsion", "komponent", "sofistikatsiya", "fenomen", "nazariya", "prakademik", "infratuzilma",
+        "futuroloji", "neurotexnologiya", "kosmologiya", "kvant", "elektronika", "robototexnika", "sensor",
+        "biokimyo", "molekulyar", "kriptografiya", "superkompyuter", "biomekanika", "nanotexnologiya"
+    ]
 };
+
 
 let score = 0;
 let highScore = localStorage.getItem("highScore") || 0;
