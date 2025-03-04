@@ -3,29 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>So‘z O‘yini</title>
+    <title>So‘z O‘yini (Zty.pe uslubida)</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Qiyinchilik tanlash oynasi -->
-    <div id="difficulty-selection">
-        <h2>Qiyinchilik darajasini tanlang:</h2>
-        <button onclick="startGame('easy')">Oson</button>
-        <button onclick="startGame('medium')">O‘rtacha</button>
-        <button onclick="startGame('hard')">Qiyin</button>
-    </div>
-
-    <!-- O‘yin oynasi -->
-    <div id="game-container" style="display: none;">
-        <h2>So‘z O‘yini</h2>
-        <button id="start-button">Boshlash</button>
-        <div id="game-area" style="display: none;">
-            <p>O‘yin boshlandi!</p>
-        </div>
+    <!-- O'yin konteyneri -->
+    <div id="game-container">
+        <h1>So‘z O‘yini</h1>
+        <p id="score">Hisob: 0</p>
+        <div id="game-area"></div>
+        <input type="text" id="word-input" autofocus placeholder="So‘zni yozing...">
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
- 
