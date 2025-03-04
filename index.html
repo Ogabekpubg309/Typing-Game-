@@ -7,21 +7,39 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>So‘z O‘yini</h1>
+    <div class="container">
+        <h1>So‘z O‘yini ⭐</h1>
 
-    <label for="difficulty">Qiyinchilik:</label>
-    <select id="difficulty">
-        <option value="easy">Oson</option>
-        <option value="medium" selected>O‘rtacha</option>
-        <option value="hard">Qiyin</option>
-    </select>
+        <label for="difficulty">Qiyinchilik:</label>
+        <select id="difficulty">
+            <option value="easy">Oson</option>
+            <option value="medium" selected>O‘rtacha</option>
+            <option value="hard">Qiyin</option>
+        </select>
 
-    <p>So‘z: <span id="word">...</span></p>
-    <input type="text" id="input" placeholder="So‘zni kiriting">
+        <div class="game">
+            <p class="word-display" id="word">...</p>
+            <input type="text" id="input" placeholder="So‘zni kiriting">
+            <button id="restart">Qayta boshlash</button>
+        </div>
 
-    <p>Ball: <span id="score">0</span></p>
-    <p>Eng yuqori ball: <span id="highScore">0</span></p>
-    <p>Vaqt: <span id="time">30</span> soniya</p>
+        <div class="info">
+            <p>Ball: <span id="score">0</span></p>
+            <p>Eng yuqori ball: <span id="highScore">0</span></p>
+            <p>Vaqt: <span id="time">30</span> soniya</p>
+        </div>
+
+        <div class="leaderboard">
+            <h2>🏆 Reyting</h2>
+            <ul id="topScores">
+                <li>1. ---</li>
+                <li>2. ---</li>
+                <li>3. ---</li>
+                <li>4. ---</li>
+                <li>5. ---</li>
+            </ul>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
